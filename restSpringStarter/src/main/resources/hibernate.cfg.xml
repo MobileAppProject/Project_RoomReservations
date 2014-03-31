@@ -10,6 +10,11 @@
         <mapping class="be.rubus.shop.model.Order" />
         <mapping class="be.rubus.shop.model.Customer" />
         <mapping class="be.rubus.shop.model.OrderLine" />
+        
+        <mapping class="be.rubus.shop.model.MeetingRoom" />
+        <mapping class="be.rubus.shop.model.Reservation" />
+        <mapping class="be.rubus.shop.model.User" />
+        <mapping class="be.rubus.shop.model.Holiday" />
 
     </session-factory>
 </hibernate-configuration>

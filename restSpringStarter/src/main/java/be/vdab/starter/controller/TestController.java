@@ -1,19 +1,27 @@
 package be.vdab.starter.controller;
 
+import be.rubus.shop.model.Reservation;
+import be.rubus.shop.service.ReservationService;
 import be.vdab.starter.model.Person;
 import be.vdab.starter.service.HelloService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import java.net.URI;
 
-@Path("/hello")
+import java.net.URI;
+import java.util.List;
+
+@Path("/Hello")
 public class TestController {
 
     @Autowired
     private HelloService helloService;
+    
+    @Autowired
+    private ReservationService reservationService;
 
     @GET
     @Produces(MediaType.TEXT_PLAIN)
@@ -36,6 +44,13 @@ public class TestController {
         result.setName("Rudy");
         result.setAge(43);
         return result;
+    }
+    
+    @GET
+    @Path("/reservations")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<Reservation> getReservations() {
+        return reservationService.getAllReservations();
     }
 
     @PUT
