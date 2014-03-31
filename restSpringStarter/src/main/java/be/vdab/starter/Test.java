@@ -8,5 +8,9 @@ public class Test {
 		this.naam = naam;
 	}
 	
+	private void testing()
+	{
+		System.out.println("testing git and stuff");
+	}
 
 }
