@@ -6,24 +6,26 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "RESERVATION")
+@Table(name="RESERVATION")
 public class Reservation {
 
 	@Id
-	@Column(name = "ID")
+	@Column(name = "RESERVATION_ID")
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Integer id;
+	private Integer reservation_id;
 	
 	@JoinColumn(name = "MEETINGROOM_ID")
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     private MeetingRoom meetingRoom;
 
 	@Column(name = "BEGIN_DATE")
     @NotNull(message = "Begin datum is verplicht")
+	@Temporal(TemporalType.DATE)
     private Date beginDate;
 	
 	@Column(name = "END_DATE")
     @NotNull(message = "Eind datum is verplicht")
+	@Temporal(TemporalType.DATE)
     private Date endDate;
 	
 	@Column(name = "PERSON_NAME")
@@ -35,12 +37,13 @@ public class Reservation {
 	private String description;
 
 	public Integer getId() {
-		return id;
+		return reservation_id;
 	}
 
 
 	public MeetingRoom getMeetingRoom() {
-		return meetingRoom;
+		return null; //TODO: this fixes the infinite loop in http://localhost:8080/restSprintStarter/data/meetingrooms 
+		//but creates a nullpointerException in http://localhost:8080/restSprintStarter/data/reservations
 	}
 
 	public void setMeetingRoom(MeetingRoom meetingRoom) {

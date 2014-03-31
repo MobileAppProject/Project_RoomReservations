@@ -1,8 +1,10 @@
 package be.rubus.shop.service;
 
+import be.rubus.shop.dao.MeetingRoomDAO;
 import be.rubus.shop.dao.ProductDAO;
 import be.rubus.shop.dao.ReservationDAO;
 import be.rubus.shop.exception.ProductNotChangedException;
+import be.rubus.shop.model.MeetingRoom;
 import be.rubus.shop.model.Order;
 import be.rubus.shop.model.OrderLine;
 import be.rubus.shop.model.Product;
@@ -17,19 +19,20 @@ import java.util.Iterator;
 import java.util.List;
 
 @Service
-public class ReservationService {
+public class MeetingRoomService {
 
     @Autowired
-    private ReservationDAO reservationDAO;
+    private MeetingRoomDAO meetingRoomDAO;
 
     @Transactional
-    public List<Reservation> getAllReservations() {
+    public List<MeetingRoom> getAllMeetingRooms(){
 
-        List<Reservation> result = reservationDAO.getReservations();
+        List<MeetingRoom> result = meetingRoomDAO.getMeetingRooms();
         
-        for(Reservation reservation : result){
-        	reservation.getMeetingRoom().getReservations().size();
-        }// this fixes a weird error
+        for(MeetingRoom mr : result){
+        	mr.getReservations().size();
+        } // this fixes a weird error
+        
         
         
         return result;

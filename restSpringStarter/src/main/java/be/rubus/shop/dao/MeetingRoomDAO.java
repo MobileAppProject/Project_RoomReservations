@@ -1,5 +1,6 @@
 package be.rubus.shop.dao;
 
+import be.rubus.shop.model.MeetingRoom;
 import be.rubus.shop.model.Product;
 import be.rubus.shop.model.Reservation;
 
@@ -12,7 +13,7 @@ import java.util.List;
 
 
 @Repository
-public class ReservationDAO {
+public class MeetingRoomDAO {
 
     @Autowired
     private SessionFactory sessionFactory;
@@ -21,23 +22,23 @@ public class ReservationDAO {
 
         return sessionFactory.getCurrentSession().createCriteria(Reservation.class).add(Restrictions.eq("active", "Y")).list();
     }*/
-    public List<Reservation> getReservations() {
+    public List<MeetingRoom> getMeetingRooms() {
 
-    	List<Reservation> result = sessionFactory.getCurrentSession().createCriteria(Reservation.class).list();
-    	
-    	result.size();
+    	List<MeetingRoom> result= sessionFactory.getCurrentSession().createCriteria(MeetingRoom.class).list();
+    			
+    	result.size();	// ??? -  might fix weird problems	
     	
         return result;
     }
 
-    public void updateReservation(Reservation reservation) {
+    public void updateMeetingRoom(MeetingRoom meetingRoom) {
 
-        sessionFactory.getCurrentSession().update(reservation);
+        sessionFactory.getCurrentSession().update(meetingRoom);
     }
 
-    public void saveReservation(Reservation reservation) {
+    public void saveMeetingRoom(MeetingRoom meetingRoom) {
 
-        sessionFactory.getCurrentSession().persist(reservation);
+        sessionFactory.getCurrentSession().persist(meetingRoom);
     }
 
 }

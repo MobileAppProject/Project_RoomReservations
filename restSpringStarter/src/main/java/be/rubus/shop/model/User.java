@@ -8,9 +8,9 @@ import javax.validation.constraints.NotNull;
 public class User {
 
 	@Id
-	@Column(name = "ID")
+	@Column(name = "USER_ID")
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Integer id;
+	private Integer user_id;
 
 	@Column(name = "NAME")
 	@NotNull(message = "Naam is verplicht")
@@ -29,7 +29,7 @@ public class User {
 	}
 
 	public Integer getId() {
-		return id;
+		return user_id;
 	}
 
 	public String getName() {
@@ -41,7 +41,7 @@ public class User {
 	}
 
 	public void setId(Integer id) {
-		this.id = id;
+		this.user_id = id;
 	}
 
 	@Override

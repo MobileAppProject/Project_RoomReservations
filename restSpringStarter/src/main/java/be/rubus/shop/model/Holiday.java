@@ -10,15 +10,14 @@ import javax.validation.constraints.NotNull;
 public class Holiday {
 
 	@Id
-	@Column(name = "ID")
+	@Column(name = "HOLIDAY_ID")
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Integer id;
+	private Integer holiday_id;
 
 	@Column(name = "HOLIDAY_DATE")
     @NotNull(message = "Begin datum is verplicht")
+	@Temporal(TemporalType.DATE)
     private Date holidayDate;
-	
-	//Temporal vraagteken
 	
 	@Column(name = "NAME")
 	@NotNull(message = "Naam van persoon is verplicht")
@@ -26,7 +25,7 @@ public class Holiday {
 
 
 	public Integer getId() {
-		return id;
+		return holiday_id;
 	}
 
 

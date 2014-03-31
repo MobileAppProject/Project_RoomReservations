@@ -11,19 +11,19 @@ import javax.validation.constraints.NotNull;
 public class MeetingRoom {
 
 	@Id
-	@Column(name = "ID")
+	@Column(name = "MEETINGROOM_ID")
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Integer id;
+	private Integer meetingRoom_id;
 
 	@Column(name = "NAME")
 	@NotNull(message = "Naam van vergaderzaal is verplicht")
 	private String name;
 	
-	@OneToMany(mappedBy = "meetingRoom", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "meetingRoom") // , cascade = CascadeType.ALL
     private List<Reservation> reservations = new ArrayList<Reservation>();
 
 	public Integer getId() {
-		return id;
+		return meetingRoom_id;
 	}
 
 	public String getName() {
@@ -35,7 +35,7 @@ public class MeetingRoom {
 	}
 
 	public void setId(Integer id) {
-		this.id = id;
+		this.meetingRoom_id = id;
 	}
 
 	public List<Reservation> getReservations() {
