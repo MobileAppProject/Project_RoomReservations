@@ -14,7 +14,7 @@ import javax.ws.rs.core.Response;
 import java.net.URI;
 import java.util.List;
 
-@Path("/Hello")
+@Path("/hello")
 public class TestController {
 
     @Autowired
@@ -28,7 +28,7 @@ public class TestController {
     public String helloWorld() {
         return "Hello World";
     }
-
+/*
     @GET
     @Path("/{name}")
     @Produces(MediaType.TEXT_PLAIN)
@@ -45,14 +45,14 @@ public class TestController {
         result.setAge(43);
         return result;
     }
-    
+    */
     @GET
     @Path("/reservations")
     @Produces(MediaType.APPLICATION_JSON)
     public List<Reservation> getReservations() {
         return reservationService.getAllReservations();
     }
-
+/*
     @PUT
     @Path("/person/{id}")
     @Consumes(MediaType.APPLICATION_JSON)
@@ -62,5 +62,5 @@ public class TestController {
             return Response.status(Response.Status.PRECONDITION_FAILED).entity("Person must be over 18 years").build();
         }
         return Response.created(URI.create("person/"+id)).build();
-    }
+    }*/
 }
