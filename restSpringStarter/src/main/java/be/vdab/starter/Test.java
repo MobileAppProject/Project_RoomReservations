@@ -11,6 +11,8 @@ public class Test {
 	private void testing()
 	{
 		System.out.println("testing git and stuff");
+		System.out.println("moar stuffz");
 	}
+	
 
 }
