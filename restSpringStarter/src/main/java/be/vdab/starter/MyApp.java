@@ -12,6 +12,8 @@ public class MyApp extends ResourceConfig {
     public MyApp() {
         register(RequestContextFilter.class);
         register(JacksonFeature.class);
+        
+        System.out.println("blaargh");
 
     }
 }
