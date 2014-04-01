@@ -10,7 +10,7 @@ public class User {
 	@Id
 	@Column(name = "USER_ID")
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Integer user_id;
+	private Integer userId;
 
 	@Column(name = "NAME")
 	@NotNull(message = "Naam is verplicht")
@@ -28,10 +28,7 @@ public class User {
 		this.password = password;
 	}
 
-	public Integer getId() {
-		return user_id;
-	}
-
+	
 	public String getName() {
 		return name;
 	}
@@ -40,8 +37,12 @@ public class User {
 		this.name = name;
 	}
 
-	public void setId(Integer id) {
-		this.user_id = id;
+	public Integer getUserId() {
+		return userId;
+	}
+
+	public void setUserId(Integer userId) {
+		this.userId = userId;
 	}
 
 	@Override

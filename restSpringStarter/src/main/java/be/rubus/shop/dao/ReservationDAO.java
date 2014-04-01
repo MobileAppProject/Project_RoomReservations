@@ -48,13 +48,14 @@ public class ReservationDAO {
         return result;
     }
     
-    public List<Reservation> getReservationsForMeetingRoomForDate(MeetingRoom mr, String dateString){
+    public List<Reservation> getReservationsForMeetingRoomForDate(MeetingRoom mr, Date date){
     	List<Reservation> result;
     	
     	Query query = sessionFactory.getCurrentSession().createQuery("from Reservation where meetingRoom = :meetingRoom and beginDate between :date1 and :date2 ");
     	query.setEntity("meetingRoom", mr);
     	
-    	Calendar cal = makeCalendarFromString(dateString);
+    	Calendar cal = new GregorianCalendar();
+    	cal.setTime(date);
     	query.setDate("date1", cal.getTime());
     	cal.add(Calendar.DAY_OF_YEAR, 1);
     	query.setDate("date2", cal.getTime());
@@ -63,26 +64,26 @@ public class ReservationDAO {
     	
         return result;
     }
-	/**
-	 * @param dateString
-	 * @return
-	 * @throws ParseException
-	 */
-	public Calendar makeCalendarFromString(String dateString) {
-		DateFormat formatter = new SimpleDateFormat("yyyyMMdd");
-    	Date date = null;
-		try {
-			date = formatter.parse(dateString);
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		
-    	Calendar myCal = new GregorianCalendar();
-    	myCal.setTime(date);
-		return myCal;
-	}
+//	/**
+//	 * @param dateString
+//	 * @return
+//	 * @throws ParseException
+//	 */
+//	public Calendar makeCalendarFromString(String dateString) {
+//		DateFormat formatter = new SimpleDateFormat("yyyyMMdd");
+//    	Date date = null;
+//		try {
+//			date = formatter.parse(dateString);
+//		} catch (ParseException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		
+//		
+//    	Calendar myCal = new GregorianCalendar();
+//    	myCal.setTime(date);
+//		return myCal;
+//	}
     
     public MeetingRoom getMeetingRoomById(int id) {
 
@@ -99,7 +100,8 @@ public class ReservationDAO {
 
     public void saveReservation(Reservation reservation) {
 
-        sessionFactory.getCurrentSession().persist(reservation);
+        sessionFactory.getCurrentSession().save(reservation);
+        //used save instead of persist
     }
 
 }

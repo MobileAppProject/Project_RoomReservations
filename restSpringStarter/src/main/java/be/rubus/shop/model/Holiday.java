@@ -12,7 +12,7 @@ public class Holiday {
 	@Id
 	@Column(name = "HOLIDAY_ID")
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Integer holiday_id;
+	private Integer holidayId;
 
 	@Column(name = "HOLIDAY_DATE")
     @NotNull(message = "Begin datum is verplicht")
@@ -24,8 +24,8 @@ public class Holiday {
 	private String name;
 
 
-	public Integer getId() {
-		return holiday_id;
+	public Integer getHolidayId() {
+		return holidayId;
 	}
 
 
@@ -48,6 +48,9 @@ public class Holiday {
 		this.name = name;
 	}
 
+	public void setHolidayId(Integer holidayId) {
+		this.holidayId = holidayId;
+	}
 
 
 	@Override

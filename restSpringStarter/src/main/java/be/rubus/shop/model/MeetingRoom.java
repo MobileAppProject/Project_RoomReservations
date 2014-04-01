@@ -6,6 +6,8 @@ import java.util.List;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
+
 @Entity
 @Table(name = "MEETINGROOM")
 public class MeetingRoom {
@@ -13,17 +15,18 @@ public class MeetingRoom {
 	@Id
 	@Column(name = "MEETINGROOM_ID")
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Integer meetingRoom_id;
+	private Integer meetingRoomId;
 
 	@Column(name = "NAME")
 	@NotNull(message = "Naam van vergaderzaal is verplicht")
 	private String name;
 	
-	@OneToMany(mappedBy = "meetingRoom") // , cascade = CascadeType.ALL
+	@OneToMany(targetEntity = Reservation.class, mappedBy = "meetingRoom") // TargetEntity aangepast
+	@JsonIgnore
     private List<Reservation> reservations = new ArrayList<Reservation>();
 
-	public Integer getId() {
-		return meetingRoom_id;
+	public Integer getMeetingRoomId() {
+		return meetingRoomId;
 	}
 
 	public String getName() {
@@ -34,8 +37,8 @@ public class MeetingRoom {
 		this.name = name;
 	}
 
-	public void setId(Integer id) {
-		this.meetingRoom_id = id;
+	public void setMeetingRoomId(Integer id) {
+		this.meetingRoomId = id;
 	}
 
 	public List<Reservation> getReservations() {
@@ -44,6 +47,12 @@ public class MeetingRoom {
 
 	public void setReservations(List<Reservation> reservations) {
 		this.reservations = reservations;
+	}
+	
+	@Override
+	public String toString() {
+		return "MeetingRoom [meetingRoomId=" + meetingRoomId + ", name=" + name
+				+ ", reservations=" + reservations + "]";
 	}
 
 }

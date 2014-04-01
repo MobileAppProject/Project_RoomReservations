@@ -15,11 +15,10 @@ public class Reservation {
 	@Id
 	@Column(name = "RESERVATION_ID")
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Integer reservation_id;
+	private Integer reservationId;
 	
 	@JoinColumn(name = "MEETINGROOM_ID")
     @ManyToOne(fetch = FetchType.EAGER)
-	@JsonIgnore
     private MeetingRoom meetingRoom;
 
 	@Column(name = "BEGIN_DATE")
@@ -40,8 +39,22 @@ public class Reservation {
 	@NotNull(message = "Beschrijving is verplicht")
 	private String description;
 
-	public Integer getId() {
-		return reservation_id;
+	public Integer getReservationId() {
+		return reservationId;
+	}
+
+
+	@Override
+	public String toString() {
+		return "Reservation [reservationId=" + reservationId + ", meetingRoom="
+				+ meetingRoom + ", beginDate=" + beginDate + ", endDate="
+				+ endDate + ", personName=" + personName + ", description="
+				+ description + "]";
+	}
+
+
+	public void setReservationId(Integer reservationId) {
+		this.reservationId = reservationId;
 	}
 
 
