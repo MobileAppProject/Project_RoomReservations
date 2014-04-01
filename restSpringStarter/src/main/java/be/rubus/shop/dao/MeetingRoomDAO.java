@@ -1,11 +1,9 @@
 package be.rubus.shop.dao;
 
 import be.rubus.shop.model.MeetingRoom;
-import be.rubus.shop.model.Product;
-import be.rubus.shop.model.Reservation;
 
+import org.hibernate.Query;
 import org.hibernate.SessionFactory;
-import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -28,6 +26,14 @@ public class MeetingRoomDAO {
     			
     	result.size();	// ??? -  might fix weird problems	
     	
+        return result;
+    }
+    
+    public MeetingRoom getMeetingRoomById(int id) {
+
+    	Query query = sessionFactory.getCurrentSession().createQuery("from MeetingRoom where meetingRoom_id = :nbr");
+        query.setInteger("nbr", id);
+        MeetingRoom result = (MeetingRoom) query.uniqueResult();
         return result;
     }
 

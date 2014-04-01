@@ -37,6 +37,12 @@ public class MeetingRoomService {
         
         return result;
     }
+    
+    @Transactional
+    public MeetingRoom getMeetingRoomById(int id){
+    	MeetingRoom mr = meetingRoomDAO.getMeetingRoomById(id);
+    	return mr;
+    }
 
   /*  private boolean productNotSelected(Order someOrder, Product someProduct) {
         boolean result = true;

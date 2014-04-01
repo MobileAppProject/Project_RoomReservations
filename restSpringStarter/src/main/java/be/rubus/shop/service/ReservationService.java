@@ -1,19 +1,15 @@
 package be.rubus.shop.service;
 
-import be.rubus.shop.dao.ProductDAO;
+
 import be.rubus.shop.dao.ReservationDAO;
-import be.rubus.shop.exception.ProductNotChangedException;
-import be.rubus.shop.model.Order;
-import be.rubus.shop.model.OrderLine;
-import be.rubus.shop.model.Product;
+import be.rubus.shop.model.MeetingRoom;
 import be.rubus.shop.model.Reservation;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
-import java.util.Iterator;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -28,10 +24,31 @@ public class ReservationService {
         List<Reservation> result = reservationDAO.getReservations();
         
         for(Reservation reservation : result){
-        	reservation.getMeetingRoom().getReservations().size();
+        	reservation.getMeetingRoom();
         }// this fixes a weird error
         
         
+        return result;
+    }
+    
+    @Transactional
+    public List<Reservation> getCurrentReservationsForMeetingRoom(MeetingRoom mr){
+    	List<Reservation> result = reservationDAO.getCurrentReservationsForMeetingRoom(mr);
+        
+        for(Reservation reservation : result){
+        	reservation.getMeetingRoom();
+        }// this fixes a weird error
+        return result;
+        
+    }
+    
+    @Transactional
+    public List<Reservation> getReservationsForMeetingRoomForDate(MeetingRoom mr, String date){
+    	List<Reservation> result = reservationDAO.getReservationsForMeetingRoomForDate(mr, date);
+        
+        for(Reservation reservation : result){
+        	reservation.getMeetingRoom();
+        }// this fixes a weird error
         return result;
     }
 

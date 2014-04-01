@@ -1,9 +1,12 @@
 package be.rubus.shop.model;
 
+import java.util.Calendar;
 import java.util.Date;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+
+import org.codehaus.jackson.annotate.JsonIgnore;
 
 @Entity
 @Table(name="RESERVATION")
@@ -16,16 +19,17 @@ public class Reservation {
 	
 	@JoinColumn(name = "MEETINGROOM_ID")
     @ManyToOne(fetch = FetchType.EAGER)
+	@JsonIgnore
     private MeetingRoom meetingRoom;
 
 	@Column(name = "BEGIN_DATE")
     @NotNull(message = "Begin datum is verplicht")
-	@Temporal(TemporalType.DATE)
+	@Temporal(TemporalType.TIMESTAMP)
     private Date beginDate;
 	
 	@Column(name = "END_DATE")
     @NotNull(message = "Eind datum is verplicht")
-	@Temporal(TemporalType.DATE)
+	@Temporal(TemporalType.TIMESTAMP)
     private Date endDate;
 	
 	@Column(name = "PERSON_NAME")
@@ -42,7 +46,7 @@ public class Reservation {
 
 
 	public MeetingRoom getMeetingRoom() {
-		return null; //TODO: this fixes the infinite loop in http://localhost:8080/restSprintStarter/data/meetingrooms 
+		return meetingRoom; //TODO: this fixes the infinite loop in http://localhost:8080/restSprintStarter/data/meetingrooms 
 		//but creates a nullpointerException in http://localhost:8080/restSprintStarter/data/reservations
 	}
 
