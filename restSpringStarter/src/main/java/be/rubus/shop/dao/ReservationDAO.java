@@ -95,13 +95,25 @@ public class ReservationDAO {
 
     public void updateReservation(Reservation reservation) {
 
+    	sessionFactory.getCurrentSession().clear(); //necessary, otherwise hibernate still has the object with this ID present in the session, and it creates a conflict preventing the update;
         sessionFactory.getCurrentSession().update(reservation);
     }
+    public void deleteReservation(Reservation reservation) {
+    	sessionFactory.getCurrentSession().update(reservation);
+    }
+    
+    
 
     public void saveReservation(Reservation reservation) {
 
         sessionFactory.getCurrentSession().save(reservation);
         //used save instead of persist
     }
+	public Reservation getReservationById(int id) {
+		Query query = sessionFactory.getCurrentSession().createQuery("from Reservation where reservationId = :nbr");
+        query.setInteger("nbr", id);
+        Reservation result = (Reservation) query.uniqueResult();
+        return result;
+	}
 
 }

@@ -6,6 +6,7 @@ import be.rubus.shop.model.Reservation;
 import be.rubus.shop.service.MeetingRoomService;
 import be.rubus.shop.service.ProductService;
 import be.rubus.shop.service.ReservationService;
+import be.vdab.custom.DTO.LoginCredentialsDTO;
 import be.vdab.custom.DTO.MeetingRoomIdAndDateDTO;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -76,6 +77,31 @@ public class ReservationController {
     	
     	//TODO: appropriate errors and messages still need to be returned
     }
+    
+    @PUT
+    @Path("/updateReservation/{id}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response updateReservation(@PathParam("id") int id, Reservation newReservation) {
+    	Response response = Response.status(Response.Status.NOT_ACCEPTABLE).entity("Reservation has not been updated.").build();
+    	Reservation oldReservation = reservationService.getReservationById(id);
+    	
+   		if(reservationService.updateReservation(oldReservation, newReservation))
+   		{
+   			response = Response.status(Response.Status.CREATED).entity("Reservation has been updated").build();
+   		}
+    	return response;
+    }
+    
+    @PUT
+    @Path("/deleteReservation/{id}")
+    public Response deleteReservation(@PathParam("id") int id){
+    	Response response = Response.status(Response.Status.OK).entity("Reservation has been deleted").build();
+    	
+    	reservationService.deleteReservation(reservationService.getReservationById(id));
+    	return response;
+    }
+    
+    
 
 	
     

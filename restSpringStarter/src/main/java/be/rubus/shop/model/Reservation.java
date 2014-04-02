@@ -38,6 +38,23 @@ public class Reservation {
 	@Column(name = "DESCRIPTION")
 	@NotNull(message = "Beschrijving is verplicht")
 	private String description;
+	
+	@Column(name="ACTIVE")
+	@NotNull(message="Active veld is verplicht in te vullen")
+	private boolean active;
+	
+	
+	
+
+	public boolean getActive() {
+		return active;
+	}
+
+
+	public void setActive(boolean active) {
+		this.active = active;
+	}
+
 
 	public Integer getReservationId() {
 		return reservationId;
