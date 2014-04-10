@@ -41,6 +41,7 @@ public class ReservationDAO {
     	List<Reservation> result = sessionFactory.getCurrentSession().createCriteria(Reservation.class)
     			.add(Restrictions.eq("meetingRoom", mr))
     			.add(Restrictions.gt("endDate", new Date()))
+    			.add(Restrictions.eq("active", true))
     			.list();
     	
     	result.size();
@@ -48,10 +49,11 @@ public class ReservationDAO {
         return result;
     }
     
+   
     public List<Reservation> getReservationsForMeetingRoomForDate(MeetingRoom mr, Date date){
     	List<Reservation> result;
     	
-    	Query query = sessionFactory.getCurrentSession().createQuery("from Reservation where meetingRoom = :meetingRoom and beginDate between :date1 and :date2 ");
+    	Query query = sessionFactory.getCurrentSession().createQuery("from Reservation where meetingRoom = :meetingRoom and beginDate between :date1 and :date2 and active = 'true'");
     	query.setEntity("meetingRoom", mr);
     	
     	Calendar cal = new GregorianCalendar();
@@ -85,6 +87,7 @@ public class ReservationDAO {
 //		return myCal;
 //	}
     
+    //TODO: move to MeetingRoomDAO
     public MeetingRoom getMeetingRoomById(int id) {
 
     	Query query = sessionFactory.getCurrentSession().createQuery("from MeetingRoom where meetingRoom_id = :nbr");

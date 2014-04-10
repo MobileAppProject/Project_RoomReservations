@@ -64,7 +64,7 @@ public class ReservationService {
     	}
     	else
     	{
-    		//TODO: throw exception
+    		System.out.println("reservation was not valid");
     	}
     	
     	return addSucceeded;
@@ -123,9 +123,11 @@ public class ReservationService {
 		List<Reservation> reservations = getReservationsForMeetingRoomForDate(reservation.getMeetingRoom(), getDayForReservation(reservation));
 		
 		
+		
 		//check if the reservation date is not in the past
 		if(reservation.getBeginDate().before(new Date(System.currentTimeMillis())))
 		{
+		
 			return false;
 		}
 		
@@ -151,16 +153,18 @@ public class ReservationService {
 		
 		Date beginDate = reservation.getBeginDate();
 		Date endDate = reservation.getEndDate();
-		for(Reservation res : reservations)
-		{
-			if(res.getReservationId() != idForUpdate){
-				//Checks if the date of the given reservation is during an existing reservation.
-				if(((beginDate.after(res.getBeginDate()) || (beginDate.equals(res.getBeginDate())))  && ( beginDate.before(res.getEndDate()) || beginDate.equals(res.getEndDate()))) 
-						|| ((endDate.after( res.getBeginDate()) || endDate.equals(res.getBeginDate())) && ( endDate.before(res.getEndDate()) || endDate.equals(res.getEndDate()))))
-				{
-					return false;
+		for(Reservation res : reservations){
+			//Check if meetingRoom overlaps
+			if(reservation.getMeetingRoom().equals(res.getMeetingRoom())){
+				if(res.getReservationId() != idForUpdate){
+					//Checks if the date of the given reservation is during an existing reservation.
+					if(((beginDate.after(res.getBeginDate()) || (beginDate.equals(res.getBeginDate())))  && ( beginDate.before(res.getEndDate()) || beginDate.equals(res.getEndDate()))) 
+							|| ((endDate.after( res.getBeginDate()) || endDate.equals(res.getBeginDate())) && ( endDate.before(res.getEndDate()) || endDate.equals(res.getEndDate())))){
+						return false;
+					}
 				}
 			}
+			
 		}
 		
 		

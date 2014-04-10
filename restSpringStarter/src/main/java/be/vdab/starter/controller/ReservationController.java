@@ -68,6 +68,7 @@ public class ReservationController {
     public Response addReservation(Reservation reservation){
     	System.out.println(reservation.toString());
     	Response response = Response.status(Response.Status.NOT_ACCEPTABLE).entity("Reservation has not been added.").build();
+    	reservation.setActive(true);
     	
    		if(reservationService.addReservation(reservation))
    		{
