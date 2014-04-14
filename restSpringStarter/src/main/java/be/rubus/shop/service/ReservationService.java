@@ -127,6 +127,7 @@ public class ReservationService {
 		//check if the reservation date is not in the past
 		if(reservation.getBeginDate().before(new Date(System.currentTimeMillis())))
 		{
+			System.out.println("reservatie begint in het verleden");
 		
 			return false;
 		}
@@ -134,6 +135,7 @@ public class ReservationService {
 		//check if reservation beginDate is before endDate
 		if(reservation.getBeginDate().after(reservation.getEndDate()))
 		{
+			System.out.println("begin van reservatie is na zijn einde");
 			return false;
 		}
 		
@@ -146,6 +148,7 @@ public class ReservationService {
 		
 		
 		if(beginCalendar.get(Calendar.DAY_OF_YEAR) != eindCalendar.get(Calendar.DAY_OF_YEAR)  || beginCalendar.get(Calendar.YEAR) != eindCalendar.get(Calendar.YEAR)){
+			System.out.println("reservatie begint en eindigt niet in hetzelfde jaar");
 			return false;
 		}
 		
@@ -155,7 +158,7 @@ public class ReservationService {
 		Date endDate = reservation.getEndDate();
 		for(Reservation res : reservations){
 			//Check if meetingRoom overlaps
-			if(reservation.getMeetingRoom().equals(res.getMeetingRoom())){
+			if(reservation.getMeetingRoom().getMeetingRoomId().equals(res.getMeetingRoom().getMeetingRoomId())){
 				if(res.getReservationId() != idForUpdate){
 					//Checks if the date of the given reservation is during an existing reservation.
 					if(((beginDate.after(res.getBeginDate()) || (beginDate.equals(res.getBeginDate())))  && ( beginDate.before(res.getEndDate()) || beginDate.equals(res.getEndDate()))) 

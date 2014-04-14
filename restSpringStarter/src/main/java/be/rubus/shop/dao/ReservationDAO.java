@@ -40,7 +40,7 @@ public class ReservationDAO {
     public List<Reservation> getCurrentReservationsForMeetingRoom(MeetingRoom mr){
     	List<Reservation> result = sessionFactory.getCurrentSession().createCriteria(Reservation.class)
     			.add(Restrictions.eq("meetingRoom", mr))
-    			.add(Restrictions.gt("endDate", new Date()))
+    			.add(Restrictions.gt("beginDate", new Date()))
     			.add(Restrictions.eq("active", true))
     			.list();
     	

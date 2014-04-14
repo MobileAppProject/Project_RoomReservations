@@ -5,11 +5,6 @@
 
 <hibernate-configuration>
     <session-factory>
-
-        <mapping class="be.rubus.shop.model.Product" />
-        <mapping class="be.rubus.shop.model.Order" />
-        <mapping class="be.rubus.shop.model.Customer" />
-        <mapping class="be.rubus.shop.model.OrderLine" />
         
         <mapping class="be.rubus.shop.model.MeetingRoom" />
         <mapping class="be.rubus.shop.model.Reservation" />
