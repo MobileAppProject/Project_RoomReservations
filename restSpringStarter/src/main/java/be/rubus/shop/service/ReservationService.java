@@ -227,5 +227,16 @@ public class ReservationService {
     	reservationDAO.deleteReservation(reservation);
     	return true;
     }
+
+	@Transactional
+    public List<Reservation> getAllReservationsForMeetingRoom(MeetingRoom mr){
+    	List<Reservation> result = reservationDAO.getAllReservationsForMeetingRoom(mr);
+        
+        for(Reservation reservation : result){
+        	reservation.getMeetingRoom();
+        }// this fixes a weird error
+        return result;
+        
+    }
     
 }

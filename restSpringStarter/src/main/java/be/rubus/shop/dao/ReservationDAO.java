@@ -49,6 +49,17 @@ public class ReservationDAO {
         return result;
     }
     
+    public List<Reservation> getAllReservationsForMeetingRoom(MeetingRoom mr){
+    	List<Reservation> result = sessionFactory.getCurrentSession().createCriteria(Reservation.class)
+    			.add(Restrictions.eq("meetingRoom", mr))
+    			.add(Restrictions.eq("active", true))
+    			.list();
+    	
+    	result.size();
+    	
+        return result;
+    }
+    
    
     public List<Reservation> getReservationsForMeetingRoomForDate(MeetingRoom mr, Date date){
     	List<Reservation> result;

@@ -46,6 +46,14 @@ public class ReservationController {
     	MeetingRoom meetingRoom = meetingRoomService.getMeetingRoomById(meetingRoomID);
         return reservationService.getCurrentReservationsForMeetingRoom(meetingRoom);
     }
+    @GET
+    @Path("/AllReservationsForMeetingRoomID/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<Reservation> getAllReservationsForMeetingRoomId(@PathParam("id") int meetingRoomID) {
+    	//meetingRoom = meetingRoomService.getAllMeetingRooms().get(0);
+    	MeetingRoom meetingRoom = meetingRoomService.getMeetingRoomById(meetingRoomID);
+        return reservationService.getAllReservationsForMeetingRoom(meetingRoom);
+    }
     
     @POST
     @Path("/ReservationsForMeetingRoomIDForDate")
