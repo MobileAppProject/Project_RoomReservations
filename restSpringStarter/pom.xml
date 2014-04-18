@@ -4,8 +4,8 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>be.vdab.starter</groupId>
-    <artifactId>restSprintStarter</artifactId>
+    <groupId>be.vdab.meetingroomreservations.starter</groupId>
+    <artifactId>meetingRoomReservations</artifactId>
     <version>1.0.0-SNAPSHOT</version>
     <packaging>war</packaging>
 

@@ -10,7 +10,7 @@
 
 
     <context:annotation-config/>
-    <context:component-scan base-package="be.vdab.starter, be.rubus.shop"/>
+    <context:component-scan base-package="be.vdab.meetingroomreservations"/>
 
     <bean id="propertyConfigurer"
           class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"

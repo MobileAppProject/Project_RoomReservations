@@ -6,10 +6,10 @@
 <hibernate-configuration>
     <session-factory>
         
-        <mapping class="be.rubus.shop.model.MeetingRoom" />
-        <mapping class="be.rubus.shop.model.Reservation" />
-        <mapping class="be.rubus.shop.model.User" />
-        <mapping class="be.rubus.shop.model.Holiday" />
+        <mapping class="be.vdab.meetingroomreservations.model.MeetingRoom" />
+        <mapping class="be.vdab.meetingroomreservations.model.Reservation" />
+        <mapping class="be.vdab.meetingroomreservations.model.User" />
+        <mapping class="be.vdab.meetingroomreservations.model.Holiday" />
 
     </session-factory>
 </hibernate-configuration>
